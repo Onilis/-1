@@ -1,0 +1,41 @@
+Private Sub Command1_Click()
+Call oper
+End Sub
+ 
+Sub oper_max_min()
+Dim A() As Integer
+Dim n As Integer
+Dim i As Integer
+Dim j As Integer
+Dim mas As Integer
+Dim min As Integer
+Dim chmax As Integer
+Dim chmin As Integer
+n = InputBox("vvedite kol-vo alementov", "nayti otr/ mejdu max i min")
+ReDim A(n)
+For i = 1 To n
+    A(i) = Val(InputBox("vvedite" & i & "-go alementa", "nayti otr/ mejdu max i min"))
+    Text1.Text = Text1.Text + Str(A(i)) + ";"
+Next i
+Max = A(1): min = A(1)
+For j = 1 To n
+    If Max < A(j) Then Max = A(j): chmax = j
+    If min > A(j) Then min = A(j): chmin = j
+Next j
+If chmax > chmin Then
+    For i = chmin To chmax
+        If A(i) < 0 Then ishodnii = ishodnii + Str(A(i)) + ";"
+    Next i
+    Text2.Text = ishodnii
+End If: GoTo 100
+If chmax < chmin Then
+    For i = chmax To chmin
+        If A(i) < 0 Then ishodnii = ishodnii + Str(A(i))
+    Next i
+    Text2.Text = ishodnii
+End If
+100:
+End Sub
+Private Sub Form_Load()
+Text1.Text = "": Text2.Text = ""
+End Sub
